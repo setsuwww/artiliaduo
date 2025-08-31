@@ -47,7 +47,7 @@ export default function Footer() {
       <div className="border-t border-gray-800 mt-8 py-6">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Artilia. All rights reserved.
+            © {new Date().getFullYear()} Artyphoria. All rights reserved.
           </p>
 
           <div className="flex items-center gap-5">
