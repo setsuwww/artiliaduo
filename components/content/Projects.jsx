@@ -1,40 +1,110 @@
 "use client"
 
-import { motion } from "framer-motion"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
+import { useEffect, useState, useCallback } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
-const projects = [
-  { title: "E-Commerce Platform", desc: "Next.js + Prisma + Tailwind", img: "/project1.png" },
-  { title: "Social Media App", desc: "React Native + Firebase", img: "/project2.png" },
-  { title: "AI Dashboard", desc: "Node.js + OpenAI + Vercel", img: "/project3.png" },
+const slides = [
+  {
+    img: "https://picsum.photos/800/500?1",
+    title: "E-Commerce Platform",
+    desc: "Next.js + Prisma + Tailwind. Build modern shopping experiences."
+  },
+  {
+    img: "https://picsum.photos/800/500?2",
+    title: "AI Dashboard",
+    desc: "Node.js + OpenAI + Vercel. Analytics & insights powered by AI."
+  },
+  {
+    img: "https://picsum.photos/800/500?3",
+    title: "Portfolio Website",
+    desc: "Next.js + Framer Motion. Showcase your work in style."
+  },
 ]
 
-export default function Projects() {
+export default function CardCarousel() {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "center" },
+    [Autoplay()]
+  )
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState([])
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onSelect()
+    setScrollSnaps(emblaApi.scrollSnapList())
+    emblaApi.on("select", onSelect)
+  }, [emblaApi, onSelect])
+
   return (
-    <section id="projects" className="py-20 px-8 max-w-6xl mx-auto">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        className="text-3xl md:text-4xl font-bold text-center text-gray-900"
-      >
-        Our Projects
-      </motion.h2>
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {projects.map((p, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ scale: 1.03 }}
-            className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg overflow-hidden"
-          >
-            <div className="h-40 bg-gray-100 flex items-center justify-center">
-              <span className="text-gray-400">Image</span>
+    <div className="relative w-full max-w-6xl mx-auto">
+      {/* Viewport */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {slides.map((slide, idx) => (
+            <div
+              key={idx}
+              className="flex-[0_0_80%] sm:flex-[0_0_60%] lg:flex-[0_0_40%] p-4"
+            >
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                <img
+                  src={slide.img}
+                  alt={slide.title}
+                  className="h-56 w-full object-cover"
+                />
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                    {slide.title}
+                  </h2>
+                  <p className="text-gray-600 mb-4">{slide.desc}</p>
+                  <button className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition">
+                    Lihat Detail
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900">{p.title}</h3>
-              <p className="mt-2 text-gray-500">{p.desc}</p>
-            </div>
-          </motion.div>
-        ))}
+          ))}
+        </div>
       </div>
-    </section>
+
+      {/* Footer Controls */}
+      <footer className="mt-6 flex items-center justify-between px-4">
+        {/* Prev/Next */}
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => emblaApi?.scrollPrev()}
+            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+          >
+            <ChevronLeft className="w-5 h-5 text-gray-800" />
+          </button>
+          <button
+            onClick={() => emblaApi?.scrollNext()}
+            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+          >
+            <ChevronRight className="w-5 h-5 text-gray-800" />
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex space-x-2">
+          {scrollSnaps.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => emblaApi?.scrollTo(idx)}
+              className={`w-2.5 h-2.5 rounded-full transition ${
+                idx === selectedIndex ? "bg-gray-800" : "bg-gray-400/40"
+              }`}
+            />
+          ))}
+        </div>
+      </footer>
+    </div>
   )
 }

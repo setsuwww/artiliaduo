@@ -30,7 +30,7 @@ export function HeroCTA() {
       className="mt-8 sm:mt-10 flex flex-col md:flex-row items-center gap-4"
     >
       <motion.button variants={item} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}
-        className="flex items-center font-semibold px-5 py-3 rounded-xl bg-gray-800/50 border-2 border-dashed border-gray-800/70 transition-colors
+        className="flex items-center font-semibold px-5 py-3 rounded-xl bg-gray-800/50 border-t border-dashed border-gray-800/70 transition-colors
           hover:border-solid hover:bg-gray-600/50 hover:border-gray-400/70
         "
       >
@@ -38,7 +38,7 @@ export function HeroCTA() {
       </motion.button>
 
       <motion.button variants={item} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}
-        className="flex items-center font-semibold text-gray-800 px-5 py-3 rounded-xl bg-gradient-to-b from-gray-400 to-white border border-white transition-colors
+        className="flex items-center font-semibold text-shadow-2xs text-gray-800 px-5 py-3 rounded-xl bg-gradient-to-b from-gray-400 to-white ring ring-gray-800 border-t border-white transition-colors
           hover:from-gray-500 hover:to-gray-100
         "
       >

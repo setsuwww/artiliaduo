@@ -28,8 +28,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}
-        className={`
+      <nav className={`
           fixed top-0 w-full z-50  flex justify-between items-center transition-all duration-300
           ${isScrolled
             ? "bg-white/10 backdrop-blur-sm py-4 px-6 md:px-8 shadow-md"
@@ -37,9 +36,8 @@ export default function Navbar() {
           }
         `}
       >
-        {/* Logo */}
-        <h1 className="text-2xl font-bold transition-colors duration-300 bg-clip-text text-transparent bg-gradient-to-b from-indigo-500 to-violet-400">
-          Artilia<span className="text-white font-semibold">.dev</span>
+        <h1 className="text-2xl font-bold transition-colors duration-300 bg-clip-text text-transparent bg-gradient-to-b from-indigo-500 to-violet-300">
+          Artyphoria
         </h1>
 
         {/* Desktop links */}
@@ -58,7 +56,7 @@ export default function Navbar() {
                         : <HiMenu className={`w-6 h-6 transition-colors ${isScrolled ? "text-gray-800" : "text-white"}`} />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Drawer */}
       {drawerOpen && (

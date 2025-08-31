@@ -2,18 +2,20 @@ import { motion } from "framer-motion"
 import { AboutData } from "@/constants/about"
 import { Badge } from "@/components/ui/Badge"
 import { CheckCircle } from "lucide-react"
- 
+
 export default function AboutLeftContent() {
   return (
-    <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="flex flex-col justify-center">
+    <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} 
+      className="flex flex-col justify-center space-y-8"
+    >
       <Badge className="relative flex items-center gap-x-2 mb-6 sm:mb-8 px-3 py-1 rounded-full bg-radial from-sky-500/20 backdrop-blur-sm border border-sky-500/30 text-sky-300 text-xs md:text-sm">
         {AboutData.badge}
       </Badge>
 
-      <h2 className="text-2xl md:text-5xl font-bold mb-6">{AboutData.title}</h2>
-      <p className="shiny-text leading-relaxed mb-8">
-        {AboutData.description}
-      </p>
+      <div>
+        <h3 className="section-header text-2xl md:text-5xl font-bold mb-6">{AboutData.title}</h3>
+        <p className="shiny-text leading-relaxed mb-4">{AboutData.description}</p>
+      </div>
 
       <div className="space-y-6">
         <div>

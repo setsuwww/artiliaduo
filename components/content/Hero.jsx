@@ -27,12 +27,16 @@ export default function Hero() {
 
         <HeroCTA />
 
-        <div className="absolute bottom-10 flex justify-center w-full animate-bounce">
-          <span className="bg-gray-800/40 border border-gray-400/20 p-2 rounded-full">
-            <ChevronDown className="w-6 h-6 text-gray-300" />
+        <div className="group absolute bottom-10 flex justify-center w-full animate-bounce cursor-pointer"
+          onClick={() => {
+            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+          }}
+        >
+          <span className="bg-gray-800/40 group-hover:bg-gray-600/40 border border-gray-400/20 p-2 rounded-full transition-colors">
+            <ChevronDown className="w-6 h-6 text-gray-300 group-hover:text-yellow-500" />
           </span>
         </div>
-        
+
       </section>
     </motion.section>
   )
