@@ -11,7 +11,7 @@ export default function Footer() {
         
         {/* Brand */}
         <div>
-          <h2 className="text-xl font-semibold text-white">Artilia</h2>
+          <h2 className="text-xl font-semibold text-white">Artyforia</h2>
           <p className="mt-4 text-sm text-gray-400 leading-relaxed">
             Building simple and elegant web solutions with a focus on UI/UX.
           </p>
